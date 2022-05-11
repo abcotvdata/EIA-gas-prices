@@ -1,0 +1,25 @@
+on:
+  schedule:
+    - cron: '5 17 * * 1'
+  workflow_dispatch:
+
+name: EIA gas prices
+
+jobs:
+  render:
+    name: Pull latest prices into a csv
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: r-lib/actions/setup-r@v1
+      - name: Set up pandoc for Rmd docs
+        uses: r-lib/actions/setup-pandoc@v1
+      - name: Install dependencies and packages
+        run: Rscript -e 'install.packages(c("tidyverse","sf","leaflet","htmlwidgets","eia"))'
+      - name: Get EIA data
+        run: Rscript scripts/EIA_gas_prices.R
+      - name: Commit results
+        run: |
+          git add -A
+          git commit -m 'Update gas prices' || echo "No changes"
+          git push origin || echo "No changes to commit"
