@@ -1,11 +1,11 @@
 on:
-env:
-  EIA_KEY: ${{ secrets.EIA_KEY }}
     - cron: '5 17 * * 1'
   workflow_dispatch:
 
 name: EIA gas prices
 
+env:
+  EIA_KEY: ${{ secrets.EIA_KEY }}
 jobs:
   render:
     name: Pull latest prices into a csv
