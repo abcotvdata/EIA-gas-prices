@@ -1,5 +1,6 @@
 on:
-  schedule:
+env:
+  EIA_KEY: ${{ secrets.EIA_KEY }}
     - cron: '5 17 * * 1'
   workflow_dispatch:
 
