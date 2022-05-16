@@ -17,8 +17,6 @@ jobs:
           touch .env
           echo EIA_KEY=${{ secrets.EIA_KEY }} >> .env
           cat .env
-      - name: Set up pandoc for Rmd docs
-        uses: r-lib/actions/setup-pandoc@v1
       - name: Install dependencies and packages
         run: Rscript -e 'install.packages(c("tidyverse","sf","leaflet","htmlwidgets","eia"))'
       - name: Get EIA data
