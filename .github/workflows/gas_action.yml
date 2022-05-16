@@ -15,11 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: r-lib/actions/setup-r@v1
-      - name: Create env file
-        run: |
-          touch .env
-          echo EIA_KEY=${{ secrets.EIA_KEY }} >> .env
-          cat .env
       - name: Install dependencies and packages
         run: Rscript -e 'install.packages(c("tidyverse","eia"))'
       - name: Get EIA data
