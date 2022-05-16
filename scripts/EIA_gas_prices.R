@@ -4,7 +4,6 @@ library(eia)
 # use EIA library key
 
 eia_set_key(EIA_KEY)
-eia_get_key()
 
 # San Francisco
 
