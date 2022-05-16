@@ -5,8 +5,6 @@ on:
 
 name: EIA gas prices
 
-env:
-  EIA_KEY: ${{ secrets.EIA_KEY }}
 jobs:
   render:
     name: Pull latest prices into a csv
@@ -14,6 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: r-lib/actions/setup-r@v1
+      - name: Create env file
+        run: |
+          touch .env
+          echo EIA_KEY=${{ secrets.EIA_KEY }} >> .env
+          cat .env
       - name: Set up pandoc for Rmd docs
         uses: r-lib/actions/setup-pandoc@v1
       - name: Install dependencies and packages
