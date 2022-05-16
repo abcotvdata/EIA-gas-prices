@@ -18,8 +18,8 @@ jobs:
       - name: Install dependencies and packages
         run: Rscript -e 'install.packages(c("tidyverse","eia"))'
       - name: Create and populate .Renviron file
-        run: |
-    echo EIA_KEY="$EIA_KEY" >> ~/.Renviron
+        run:
+        echo EIA_KEY="$EIA_KEY" >> ~/.Renviron
     shell: bash
       - name: Get EIA data
         run: Rscript scripts/EIA_gas_prices.R
